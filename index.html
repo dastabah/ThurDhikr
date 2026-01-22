@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#022c22">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -60,6 +60,10 @@
         /* ═══════════════════════════════════════════════════════════
            BASE LAYOUT
         ═══════════════════════════════════════════════════════════ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         html, body { 
             margin: 0; 
             padding: 0; 
@@ -95,7 +99,8 @@
             scroll-snap-align: start; 
             padding: 1.25rem;
             padding-top: 72px;
-            padding-bottom: 90px;
+            /* Increased padding + safe area for mobile devices */
+            padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px));
             position: relative;
         }
         
@@ -174,6 +179,7 @@
             border-radius: 20px;
             position: relative;
             overflow: hidden;
+            margin-bottom: 2rem;
         }
         
         .dhikr-card::before {
@@ -412,7 +418,7 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-top: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 0.75rem 1rem 1.25rem;
+            padding: 0.75rem 1rem calc(1.25rem + env(safe-area-inset-bottom, 0px));
         }
 
         .nav-btn {
