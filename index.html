@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#022c22">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -60,10 +60,6 @@
         /* ═══════════════════════════════════════════════════════════
            BASE LAYOUT
         ═══════════════════════════════════════════════════════════ */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-
         html, body { 
             margin: 0; 
             padding: 0; 
@@ -99,8 +95,7 @@
             scroll-snap-align: start; 
             padding: 1.25rem;
             padding-top: 72px;
-            /* Increased padding + safe area for mobile devices */
-            padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px));
+            padding-bottom: 90px;
             position: relative;
         }
         
@@ -179,7 +174,6 @@
             border-radius: 20px;
             position: relative;
             overflow: hidden;
-            margin-bottom: 2rem;
         }
         
         .dhikr-card::before {
@@ -294,6 +288,17 @@
             color: var(--ink-mid);
             font-size: 1.05rem;
             line-height: 1.7;
+        }
+        
+        /* Specialized class for Urdu transliteration text */
+        .urdu-text {
+            display: inline-block;
+            margin-top: 0.75rem;
+            padding: 0.25rem 0;
+            color: var(--emerald-deep);
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-style: italic;
         }
 
         /* Interactive highlight on tap/hover */
@@ -418,7 +423,7 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-top: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 0.75rem 1rem calc(1.25rem + env(safe-area-inset-bottom, 0px));
+            padding: 0.75rem 1rem 1.25rem;
         }
 
         .nav-btn {
@@ -531,6 +536,7 @@
         .toc-link:nth-child(6) { animation-delay: 0.3s; }
         .toc-link:nth-child(7) { animation-delay: 0.35s; }
         .toc-link:nth-child(8) { animation-delay: 0.4s; }
+        .toc-link:nth-child(9) { animation-delay: 0.45s; }
 
         /* ═══════════════════════════════════════════════════════════
            DECORATIVE ELEMENTS
@@ -562,43 +568,30 @@
 </head>
 <body class="no-select">
 
-    <!-- ═══════════════════════════════════════════════════════════
-         EMBER PARTICLE LAYER
-    ═══════════════════════════════════════════════════════════ -->
     <div class="ember-container" id="ember-container"></div>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         HEADER BAR
-    ═══════════════════════════════════════════════════════════ -->
     <header class="header-bar">
         <div class="max-w-3xl mx-auto text-center">
             <h2 id="active-section-title" class="header-title font-regal text-sm tracking-widest truncate"></h2>
         </div>
     </header>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         MAIN CONTENT PAGES
-    ═══════════════════════════════════════════════════════════ -->
     <div class="swipe-container">
 
-        <!-- HOME PAGE -->
         <div class="page" id="home" data-title="Home">
             <div class="max-w-2xl mx-auto">
                 
-                <!-- Hero Image -->
                 <div class="hero-image-container mb-8">
                     <img src="https://i.pinimg.com/1200x/9a/43/14/9a4314d66273d8fbe3c6aa5ebdc51471.jpg" 
                          alt="The Green Dome of the Prophet's Mosque">
                 </div>
 
-                <!-- Title Block -->
                 <header class="text-center mb-10">
                     <h1 class="text-3xl md:text-4xl font-regal main-title mb-3">
                         Madina Institute Weekly Dhikr
                     </h1>
                 </header>
 
-                <!-- Table of Contents -->
                 <nav class="space-y-3">
                     <a href="#fatihah" class="toc-link animate-fade-up" style="opacity:0">
                         <span class="toc-number">1</span>
@@ -620,21 +613,24 @@
                         <span class="toc-number">5</span>
                         <div class="toc-title">Qasida: Ya Lateefan</div>
                     </a>
-                    <a href="#qasaid-lailaha" class="toc-link animate-fade-up" style="opacity:0">
+                    <a href="#qasaid-assubhu" class="toc-link animate-fade-up" style="opacity:0">
                         <span class="toc-number">6</span>
+                        <div class="toc-title">Qasida: As Subhu Bada</div>
+                    </a>
+                    <a href="#qasaid-lailaha" class="toc-link animate-fade-up" style="opacity:0">
+                        <span class="toc-number">7</span>
                         <div class="toc-title">Qasida: La ilaha illa Allah</div>
                     </a>
                     <a href="#qasaid-muhammadiyyah" class="toc-link animate-fade-up" style="opacity:0">
-                        <span class="toc-number">7</span>
+                        <span class="toc-number">8</span>
                         <div class="toc-title">Qasida: Al-Qasidatul Muhammadiyyah</div>
                     </a>
                     <a href="#qasaid-malana" class="toc-link animate-fade-up" style="opacity:0">
-                        <span class="toc-number">8</span>
+                        <span class="toc-number">9</span>
                         <div class="toc-title">Qasida: Ma Lana Mawlan</div>
                     </a>
                 </nav>
 
-                <!-- Footer -->
                 <footer class="text-center mt-12 py-6">
                     <div class="ornament mb-4">
                         <span class="ornament-line"></span>
@@ -648,7 +644,6 @@
             </div>
         </div>
 
-        <!-- SURAH AL-FATIHAH -->
         <div class="page" id="fatihah" data-title="Surah Al-Fatihah">
             <div class="max-w-2xl mx-auto">
                 <div class="dhikr-card p-6 md:p-8">
@@ -705,7 +700,6 @@
             </div>
         </div>
 
-        <!-- SAYYIDUL ISTIGHFAR -->
         <div class="page" id="istighfar" data-title="Sayyidul Istighfar">
             <div class="max-w-2xl mx-auto">
                 <div class="dhikr-card p-6 md:p-8">
@@ -798,7 +792,6 @@
             </div>
         </div>
 
-        <!-- ADHKAR -->
         <div class="page" id="adhkar" data-title="Adhkar">
             <div class="max-w-2xl mx-auto">
                 <div class="dhikr-card p-6 md:p-8">
@@ -837,7 +830,6 @@
             </div>
         </div>
 
-        <!-- QASIDA: THE LATIFIYYAH -->
         <div class="page" id="qasaid-latifiyyah" data-title="Qasida: The Latifiyyah">
             <div class="max-w-2xl mx-auto">
                 <div class="dhikr-card p-6 md:p-8">
@@ -882,7 +874,6 @@
             </div>
         </div>
 
-        <!-- QASIDA: YA LATEEFAN -->
         <div class="page" id="qasaid-yaleetifan" data-title="Qasida: Ya Lateefan">
             <div class="max-w-2xl mx-auto">
                 <div class="dhikr-card p-6 md:p-8">
@@ -921,7 +912,84 @@
             </div>
         </div>
 
-        <!-- QASIDA: LA ILAHA ILLA ALLAH -->
+        <div class="page" id="qasaid-assubhu" data-title="Qasida: As Subhu Bada">
+            <div class="max-w-2xl mx-auto">
+                <div class="dhikr-card p-6 md:p-8">
+                    <div class="section-header">
+                        <h2 class="text-2xl md:text-3xl font-regal text-emerald-900">
+                            Assabhu Bada Min Tal'ati-Hi
+                        </h2>
+                    </div>
+        
+                    <div class="space-y-2">
+                        <div class="verse-block">
+                            <p class="verse-arabic font-arabic" dir="rtl">الصُّبْحُ بَدَا مِنْ طَلْعَتِهِ ، وَاللَّيْلُ دَجَا مِنْ وَفْرَتِهِ</p>
+                            <span class="verse-transliteration font-transliteration">As subhu bad amin tal'ati hii<br>wa'al layu dajaa min wafrati hee</span>
+                            <p class="verse-translation font-body">The morning light appeared from his countenance, and the night grew dark from his flowing hair</p>
+                        </div>
+
+                        <div class="verse-block">
+                            <p class="urdu-text font-transliteration">Hai noor e-sahar chehre say tere<br>Aur shab ki raunak Zulfoon say</p>
+                            <p class="verse-translation font-body">(Urdu) The light of dawn is from your face, and the luster of the night is from your tresses</p>
+                        </div>
+        
+                        <div class="verse-block">
+                             <p class="verse-arabic font-arabic" dir="rtl">اللهُ اللهُ اللهُ اللهُ</p>
+                             <span class="verse-transliteration font-transliteration">Allahu Allahu Allah Allah<br>Allahu Allahu Allah Allah</span>
+                        </div>
+        
+                        <div class="verse-block">
+                            <p class="verse-arabic font-arabic" dir="rtl">كَنْزُ الْكَرَمِ مَوْلَى النِّعَمِ ، هَادِي الْأُمَمِ لِشَرِيعَتِهِ</p>
+                            <span class="verse-transliteration font-transliteration">Kanz-ul-karami mowl an-ni-amii<br>Haad-il umami li shari'ati hii</span>
+                            <p class="verse-translation font-body">The treasure of generosity, the Master of favors; the Guide of the nations to His Divine Law</p>
+                        </div>
+
+                        <div class="verse-block">
+                            <p class="urdu-text font-transliteration">Ni'mat ka khazina hain Mawla<br>Ganjuna-yi rehmat ke hai Aqaa<br>Hadi hai tammam-i shari'at kay</p>
+                            <p class="verse-translation font-body">(Urdu) The Master is the treasure of blessing, The Lord is the treasury of mercy, He is the Guide for the entire Sacred Law</p>
+                        </div>
+                        
+                         <div class="verse-block">
+                             <p class="verse-arabic font-arabic" dir="rtl">اللهُ اللهُ اللهُ اللهُ</p>
+                             <span class="verse-transliteration font-transliteration">Allahu Allahu Allah Allah<br>Allahu Allahu Allah Allah</span>
+                        </div>
+        
+                        <div class="verse-block">
+                            <p class="verse-arabic font-arabic" dir="rtl">سَعَتِ الشَّجَرُ نَطَقَ الْحَجَرُ ، شُقَّ الْقَمَرُ بِإِشَارَتِهِ</p>
+                            <span class="verse-transliteration font-transliteration">sa'at-ish-shajaruu nataq-al-hajaruu<br>Shqq-al-qamaruu bi ishaaratihii</span>
+                            <p class="verse-translation font-body">The trees walked, the stone spoke; the moon split at his signal</p>
+                        </div>
+
+                        <div class="verse-block">
+                            <p class="urdu-text font-transliteration">Ungli ke ishare pair (trees) chale<br>Eijaz se pathar bol uthe<br>Aur chand huwa hai dhoo tukre<br>Angusht ke aik ishare se</p>
+                            <p class="verse-translation font-body">(Urdu) The trees moved at the signal of his finger; by a miracle the stones spoke up. And the moon split into two pieces, by a single signal of his finger</p>
+                        </div>
+        
+                         <div class="verse-block">
+                             <p class="verse-arabic font-arabic" dir="rtl">اللهُ اللهُ اللهُ اللهُ</p>
+                             <span class="verse-transliteration font-transliteration">Allahu Allahu Allah Allah<br>Allahu Allahu Allah Allah</span>
+                        </div>
+        
+                        <div class="verse-block">
+                            <p class="verse-arabic font-arabic" dir="rtl">جِبْرِيلُ أَتَى لَيْلَةَ أَسْرَى ، وَالرَّبُّ دَعَا فِي حَضْرَتِهِ</p>
+                            <span class="verse-transliteration font-transliteration">Jibrilu ataa laylata asraa<br>w-ar-rabbu da'aa fii hadrati hii</span>
+                            <p class="verse-translation font-body">Gabriel came on the night of the Isra, and the Lord invited him to His Divine Presence</p>
+                        </div>
+
+                        <div class="verse-block">
+                            <p class="urdu-text font-transliteration">Jibril-i Amin paigham-i khuda<br>Lekar aye thay shab-i-asra'<br>Allah hane Arsh pay bulvayaa<br>Kurbat ka sharaf unko baksha</p>
+                            <p class="verse-translation font-body">(Urdu) Gabriel the Trustworthy brought the message of God on the Night of the Journey; Allah called him to the Throne and granted him the honor of nearness</p>
+                        </div>
+                        
+                         <div class="verse-block">
+                             <p class="verse-arabic font-arabic" dir="rtl">اللهُ اللهُ اللهُ اللهُ</p>
+                             <span class="verse-transliteration font-transliteration">Allahu Allahu Allah Allah<br>Allahu Allahu Allah Allah</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="page" id="qasaid-lailaha" data-title="Qasida: La ilaha illa Allah">
             <div class="max-w-2xl mx-auto">
                 <div class="dhikr-card p-6 md:p-8">
@@ -1080,7 +1148,6 @@
             </div>
         </div>
 
-        <!-- QASIDA: AL-QASIDATUL MUHAMMADIYYAH -->
         <div class="page" id="qasaid-muhammadiyyah" data-title="Qasida: Al-Muhammadiyyah">
             <div class="max-w-2xl mx-auto">
                 <div class="dhikr-card p-6 md:p-8">
@@ -1092,159 +1159,132 @@
                     </div>
 
                     <div class="space-y-2">
-                        <!-- Opening Refrain -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مَوْلَايَ صَلِّ وَسَلِّمْ دَائِمًا أَبَدًا ۰ عَلَى الْحَبِيبِ وَآلِ الْبَيْتِ كُلِّهِمِ</p>
                             <span class="verse-transliteration font-transliteration">Mawlāya ṣalli wa sallim dā'iman abadā, 'alā-l Ḥabībi wa Āli-l Bayti kullihimi</span>
                             <p class="verse-translation font-body">O my Master, send prayers and peace always and forever, upon the Beloved and all the People of his Household</p>
                         </div>
 
-                        <!-- Verse 1 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ أَشْرَفُ الْأَعْرَابِ وَالْعَجَمِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun ashraful a'rābi wal 'ajami</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is the noblest of Arabs and non-Arabs</p>
                         </div>
 
-                        <!-- Verse 2 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ خَيْرُ مَنْ يَمْشِي عَلَى قَدَمِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun khayru man yamshī 'alā qadami</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is the best of those who walk upon feet</p>
                         </div>
 
-                        <!-- Verse 3 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ بَاسِطُ الْمَعْرُوفِ جَامِعُهُ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun bāsitul ma'rūfi jāmi'uhu</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is a spreader of good and its gatherer</p>
                         </div>
 
-                        <!-- Verse 4 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ صَاحِبُ الْإِحْسَانِ وَالْكَرَمِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun sāhibul ihsāni wal karami</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is a possessor of beneficence and generosity</p>
                         </div>
 
-                        <!-- Refrain -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مَوْلَايَ صَلِّ وَسَلِّمْ دَائِمًا أَبَدًا ۰ عَلَى الْحَبِيبِ وَآلِ الْبَيْتِ كُلِّهِمِ</p>
                             <span class="verse-transliteration font-transliteration">Mawlāya ṣalli wa sallim dā'iman abadā, 'alā-l Ḥabībi wa Āli-l Bayti kullihimi</span>
                             <p class="verse-translation font-body">O my Master, send prayers and peace always and forever, upon the Beloved and all the People of his Household</p>
                         </div>
 
-                        <!-- Verse 5 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ تَاجُ رُسْلِ اللهِ قَاطِبَةً</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun tāju ruslillāhi qātibatan</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is exclusively the crown of all Allah's messengers</p>
                         </div>
 
-                        <!-- Verse 6 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ صَادِقُ الْأَقْوَالِ وَالْكَلِمِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun sādiqul aqwāli wal kalimi</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is true in speech and sayings</p>
                         </div>
 
-                        <!-- Verse 7 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ ثَابِتُ الْمِيثَاقِ حَافِظُهُ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun thābitul mīthāqi hāfizuhu</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is an upholder and protector of covenants</p>
                         </div>
 
-                        <!-- Verse 8 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ طَيِّبُ الْأَخْلَاقِ وَالشِّيَمِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun tayyibul akhlāqi wash-shiyami</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is of pleasant character and disposition</p>
                         </div>
 
-                        <!-- Refrain -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مَوْلَايَ صَلِّ وَسَلِّمْ دَائِمًا أَبَدًا ۰ عَلَى الْحَبِيبِ وَآلِ الْبَيْتِ كُلِّهِمِ</p>
                             <span class="verse-transliteration font-transliteration">Mawlāya ṣalli wa sallim dā'iman abadā, 'alā-l Ḥabībi wa Āli-l Bayti kullihimi</span>
                             <p class="verse-translation font-body">O my Master, send prayers and peace always and forever, upon the Beloved and all the People of his Household</p>
                         </div>
 
-                        <!-- Verse 9 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ رُوِيَتْ بِالنُّورِ طِينَتُهُ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun ruwiyat binnūri tīnatuhu</span>
                             <p class="verse-translation font-body">Muhammad's ﷺ natural substance was quenched with divine light</p>
                         </div>
 
-                        <!-- Verse 10 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ لَمْ يَزَلْ نُورًا مِنَ الْقِدَمِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun lam yazal nūran minal qidami</span>
                             <p class="verse-translation font-body">Muhammad's ﷺ light has not disappeared since the beginning of time</p>
                         </div>
 
-                        <!-- Verse 11 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ حَاكِمٌ بِالْعَدْلِ ذُو شَرَفٍ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun hākimun bil 'adli dhū sharafin</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is an upright judge, possessing honour</p>
                         </div>
 
-                        <!-- Verse 12 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ مَعْدِنُ الْإِنْعَامِ وَالْحِكَمِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun ma'dinul in'āmi wal hikami</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is the source of benefaction and wisdom</p>
                         </div>
 
-                        <!-- Refrain -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مَوْلَايَ صَلِّ وَسَلِّمْ دَائِمًا أَبَدًا ۰ عَلَى الْحَبِيبِ وَآلِ الْبَيْتِ كُلِّهِمِ</p>
                             <span class="verse-transliteration font-transliteration">Mawlāya ṣalli wa sallim dā'iman abadā, 'alā-l Ḥabībi wa Āli-l Bayti kullihimi</span>
                             <p class="verse-translation font-body">O my Master, send prayers and peace always and forever, upon the Beloved and all the People of his Household</p>
                         </div>
 
-                        <!-- Verse 13 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ خَيْرُ خَلْقِ اللهِ مِنْ مُضَرٍ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun khayru khalqillāhi min mudarin</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is the best of Allah's creation, from Mudar</p>
                         </div>
 
-                        <!-- Verse 14 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ خَيْرُ رُسْلِ اللهِ كُلِّهِمِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun khayru ruslillāhi kullihimi</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is exclusively the best of Allah's messengers</p>
                         </div>
 
-                        <!-- Verse 15 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ دِينُهُ حَقٌّ نَدِينُ بِهِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun dīnuhu haqqun nadīnu bihi</span>
                             <p class="verse-translation font-body">Muhammad's ﷺ creed is a truth that we profess and adhere to</p>
                         </div>
 
-                        <!-- Verse 16 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ مُجْمِلٌ حَقًّا عَلَى عَلَمِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun mujmilun haqqan 'alā 'alami</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is moderate and decent, befitting of a noble</p>
                         </div>
 
-                        <!-- Refrain -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مَوْلَايَ صَلِّ وَسَلِّمْ دَائِمًا أَبَدًا ۰ عَلَى الْحَبِيبِ وَآلِ الْبَيْتِ كُلِّهِمِ</p>
                             <span class="verse-transliteration font-transliteration">Mawlāya ṣalli wa sallim dā'iman abadā, 'alā-l Ḥabībi wa Āli-l Bayti kullihimi</span>
                             <p class="verse-translation font-body">O my Master, send prayers and peace always and forever, upon the Beloved and all the People of his Household</p>
                         </div>
 
-                        <!-- Page 2 content - reading right to left -->
-
-                        <!-- Verse 17 -->
-                     
-
-                        <!-- Verse 18 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ ذِكْرُهُ رَوْحٌ لِأَنْفُسِنَا</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun dhikruhu rawhun li anfusinā</span>
@@ -1264,16 +1304,12 @@
                         </div>
 
 
-                        <!-- Verse 19 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ كَاشِفُ الْغُمَّاتِ وَالظُّلَمِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun kāshiful ghummāti waz-zulami</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is a remover of afflictions and darkness</p>
                         </div>
 
-                        <!-- Verse 20 -->
-                       
-                        <!-- Refrain -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مَوْلَايَ صَلِّ وَسَلِّمْ دَائِمًا أَبَدًا ۰ عَلَى الْحَبِيبِ وَآلِ الْبَيْتِ كُلِّهِمِ</p>
                             <span class="verse-transliteration font-transliteration">Mawlāya ṣalli wa sallim dā'iman abadā, 'alā-l Ḥabībi wa Āli-l Bayti kullihimi</span>
@@ -1286,31 +1322,24 @@
                             <p class="verse-translation font-body">Muhammad ﷺ is a master, and his virtues are pleasant</p>
                         </div>
 
-                        <!-- Verse 21 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ صَاغَهُ الرَّحْمَنُ بِالنِّعَمِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun sāghahur rahmānu binni'ami</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is the one whom the Most Merciful created full of benefits</p>
                         </div>
 
-                        <!-- Verse 22 -->
-                       <div class="verse-block">
+                        <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ صَفْوَةُ الْبَارِي وَخِيرَتُهُ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun safwatul bāri wa khīratuhu</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is the Creator's best and elite</p>
                         </div>
 
-                        <!-- Verse 23 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ طَاهِرٌ مِنْ سَائِرِ التُّهَمِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun tāhirun min sā'irit tuhami</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is unblemished from all evil suspicions</p>
                         </div>
 
-                        <!-- Verse 24 -->
-                        
-
-                        <!-- Refrain -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مَوْلَايَ صَلِّ وَسَلِّمْ دَائِمًا أَبَدًا ۰ عَلَى الْحَبِيبِ وَآلِ الْبَيْتِ كُلِّهِمِ</p>
                             <span class="verse-transliteration font-transliteration">Mawlāya ṣalli wa sallim dā'iman abadā, 'alā-l Ḥabībi wa Āli-l Bayti kullihimi</span>
@@ -1323,30 +1352,23 @@
                             <p class="verse-translation font-body">Muhammad ﷺ is cheerful and hospitable to his guest</p>
                         </div>
 
-                        <!-- Verse 25 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ جَارُهُ وَاللهِ لَمْ يُضَمِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun jāruhu wallāhi lam yudami</span>
                             <p class="verse-translation font-body">Muhammad ﷺ never brought evil to his neighbour, by Allah I swear</p>
                         </div>
 
-                        <!-- Verse 26 -->
-                        
-						 <div class="verse-block">
+                        <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ طَابَتِ الدُّنْيَا بِبِعْثَتِهِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun tābatid dunyā bibi'thatihi</span>
                             <p class="verse-translation font-body">Muhammad's ﷺ emergence caused the world to become delightful</p>
                         </div>
-                        <!-- Verse 27 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ جَاءَ بِالْآيَاتِ وَالْحِكَمِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun jā'a bil āyāti wal hikami</span>
                             <p class="verse-translation font-body">Muhammad ﷺ came with Qur'anic verses and multiple wisdoms</p>
                         </div>
 
-                        <!-- Verse 28 -->
-                       
-                        <!-- Refrain -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مَوْلَايَ صَلِّ وَسَلِّمْ دَائِمًا أَبَدًا ۰ عَلَى الْحَبِيبِ وَآلِ الْبَيْتِ كُلِّهِمِ</p>
                             <span class="verse-transliteration font-transliteration">Mawlāya ṣalli wa sallim dā'iman abadā, 'alā-l Ḥabībi wa Āli-l Bayti kullihimi</span>
@@ -1357,31 +1379,23 @@
                             <span class="verse-transliteration font-transliteration">Muhammadun yawma ba'thin nāsi shāfi'unā</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is our intercessor on the day when humankind is resurrected</p>
                         </div>
-                        <!-- Verse 29 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ نُورُهُ الْهَادِي مِنَ الظُّلَمِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun nūruhul hādī minaz-zulami</span>
                             <p class="verse-translation font-body">Muhammad's ﷺ light is a guide out of darkness</p>
                         </div>
 
-                        <!-- Verse 30 -->
-                        
-						<div class="verse-block">
+                        <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ قَائِمٌ لِلَّهِ ذُو هِمَمٍ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun qā'imun lillāhi dhū himamin</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is dedicated to Allah, endowed with ambitions</p>
                         </div>
-                        <!-- Verse 31 -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مُحَمَّدٌ خَاتَمٌ لِلرُّسُلِ كُلِّهِمِ</p>
                             <span class="verse-transliteration font-transliteration">Muhammadun khātamun lir-rusuli kullihimi</span>
                             <p class="verse-translation font-body">Muhammad ﷺ is the seal of every single last one of the messengers</p>
                         </div>
 
-                        <!-- Verse 32 -->
-                        
-
-                        <!-- Final Refrain -->
                         <div class="verse-block">
                             <p class="verse-arabic font-arabic" dir="rtl">مَوْلَايَ صَلِّ وَسَلِّمْ دَائِمًا أَبَدًا ۰ عَلَى الْحَبِيبِ وَآلِ الْبَيْتِ كُلِّهِمِ</p>
                             <span class="verse-transliteration font-transliteration">Mawlāya ṣalli wa sallim dā'iman abadā, 'alā-l Ḥabībi wa Āli-l Bayti kullihimi</span>
@@ -1392,7 +1406,6 @@
             </div>
         </div>
 
-        <!-- QASIDA: MA LANA MAWLAN -->
         <div class="page" id="qasaid-malana" data-title="Qasida: Ma Lana Mawlan">
             <div class="max-w-2xl mx-auto">
                 <div class="dhikr-card p-6 md:p-8">
@@ -1433,9 +1446,6 @@
 
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         BOTTOM NAVIGATION
-    ═══════════════════════════════════════════════════════════ -->
     <nav class="bottom-nav">
         <div class="max-w-3xl mx-auto flex justify-between items-center">
             <button id="prev-btn" class="nav-btn" aria-label="Previous">
@@ -1452,9 +1462,6 @@
         </div>
     </nav>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         SCRIPTS
-    ═══════════════════════════════════════════════════════════ -->
     <script>
         // ═══════════════════════════════════════════════════════════
         // EMBER PARTICLE SYSTEM (with blue accents)
@@ -1563,7 +1570,6 @@
         updateUI(0);
     </script>
 
-    <!-- Service Worker Registration -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
